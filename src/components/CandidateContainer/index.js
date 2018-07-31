@@ -29,6 +29,7 @@ class CandidateContainer extends Component {
       listing: '',
       listingError: '',
       file: null,
+      listingurl: '',
       stake: 0,
       stakeError: ''
     };
@@ -74,16 +75,29 @@ class CandidateContainer extends Component {
         {!showTxQueue &&
         <div className='formWrapper'>
           {!useFileUpload &&
-          <div className='formItem'>
-            <div>{keys.candidate}<span className='requiredIcon'>*</span></div>
-            <TextField
-              hintText={keys.candidateExample.substr(0, 25)}
-              value={this.state.listing}
-              errorText={this.state.listingError}
-              onChange={(e, value) => {
-                this.setState({listing: value});
-              }}
-            />
+            <div>
+            <div className='formItem'>
+              <div>{keys.candidate}<span className='requiredIcon'>*</span></div>
+              <TextField
+                hintText={keys.candidateExample.substr(0, 25)}
+                value={this.state.listing}
+                errorText={this.state.listingError}
+                onChange={(e, value) => {
+                  this.setState({listing: value});
+                }}
+              />
+            </div>
+            <div className='formItem'>
+              <div>URL<span className='requiredIcon'>*</span></div>
+              <TextField
+                hintText={keys.candidateURL_example.substr(0, 25)}
+                value={this.state.listingurl}
+                errorText={this.state.listingError}
+                onChange={(e, value) => {
+                  this.setState({listingurl: value});
+                }}
+              />
+            </div>
           </div>
           }
           {useFileUpload &&
@@ -158,8 +172,8 @@ class CandidateContainer extends Component {
   }
 
   addListing () {
-    this.props.actions.applyListing(this.state.listing, this.state.stake, this.state.file);
-    this.setState({listing: '', stake: 0, file: null});
+    this.props.actions.applyListing(this.state.listing, this.state.stake, this.state.file, this.state.listingurl);
+    this.setState({listing: '', stake: 0, file: null, 'listingurl': ''});
   }
 
   async onFileSelected (files) {

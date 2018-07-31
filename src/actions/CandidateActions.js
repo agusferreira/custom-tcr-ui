@@ -84,12 +84,13 @@ export function getCandidateListings () {
   };
 }
 
-export function applyListing (name, tokens, file) {
+export function applyListing (name, tokens, file, listingurl) {
   return {
     type: APPLY_LISTING,
     name,
     tokens,
-    file
+    file,
+    listingurl
   };
 }
 

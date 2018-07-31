@@ -33,6 +33,16 @@ export default class ListingsMapper {
     return listingData.id ? listingData.id : listingData.name;
   }
 
+  static getUrl (listingData) {
+    if (!listingData) {
+      return '';
+    }
+    if (!listingData.listingurl) {
+      return '';
+    }
+    return listingData.listingurl
+  }
+
   static async map (listingHash, data, registry) {
     let listing = registry.getListing(listingHash);
     let listingData = data ? await IPFS.get(data) : null;
@@ -59,6 +69,7 @@ export default class ListingsMapper {
       let result = {
         id: listingHash,
         name: this.getName(listingData),
+        listingurl: this.getUrl(listingData),
         label: '',
         account,
         challengeId,

@@ -1,10 +1,10 @@
 {
   "en": {
-    "registryName": "TCR",
+    "registryName": "Poet Content Registry",
 
     "eth": "ETH",
     "ethers": "Ethers",
-    "tokenName": "TKN",
+    "tokenName": "POE",
     "wei": "WEI",
 
     "one": "one",
@@ -39,11 +39,13 @@
     "notExists": "Ooops... No candidate in contract",
 
     "menu_header": "Menu",
-    "menu_tokenHolder": "Token Holder",
-    "menu_candidate": "Applicant page",
-    "menu_consumer": "Consumer page",
-    "menu_manageTokens": "Manage tokens",
-    "menu_parameterizer": "Governance",
+    "menu_tokenHolder": "Curate Registry",
+    "menu_candidate": "Add New Listing",
+    "menu_consumer": "View Registry",
+    "menu_manageTokens": "Manage Tokens",
+    "menu_parameterizer": "TCR Parameters",
+    "menu_help": "Support",
+
 
     "tokenHolderPage_title": "Overview",
     "tokenHolderPage_listingName": "Candidate to review",
@@ -52,6 +54,7 @@
     "tokenHolderPage_listingActions": "Actions",
 
     "tcrConfigError": "TCR Config file error: id field must be an address!",
+    "candidateURL_example": "https://www.thetimes.co.uk/article/chancellor-alistair-darling-on-brink-of-second-bailout-for-banks-n9l382mn62h",
 
     "candidatePage_title": "Applicant page",
     "candidatePage_addListingTitle": "Apply candidate",

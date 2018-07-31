@@ -50,11 +50,30 @@ const renderRow = (config, data, registry, index) => (
             </Link>
           </TableRowColumn>
         );
+      } else if (column.propName === 'dueDate') {
+        return (
+          <TableRowColumn key={key}>{data[column.propName]}</TableRowColumn>
+        );
+      } else if (data.listingurl) {
+        return (
+          <TableRowColumn key={key} colSpan='5'>
+            <Link
+              to={`${data.listingurl}`}
+              target={`${data.target}`}
+              style={{
+                color: keys.accentColor,
+                fontWeight: '400',
+              }}
+              >
+                {data[column.propName]}
+              </Link>
+            </TableRowColumn>
+          );
       }
 
+
       return (
-        <TableRowColumn key={key}>{data[column.propName]}</TableRowColumn>
-      );
+        <TableRowColumn key={key} colSpan='5'>{data[column.propName]}</TableRowColumn>);
     })}
   </TableRow>
 );
@@ -62,14 +81,15 @@ const renderRow = (config, data, registry, index) => (
 const ListingsList = ({ listings, config, registry }) => {
   return (
     <div>
-      <Table fixedHeader fixedFooter selectable={false}>
-        <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+      <Table fixedFooter selectable={false} style={{ tableLayout: "auto" }}>
+        {/* }<TableHeader adjustForCheckbox={false} displaySelectAll={false}>
           <TableRow>
             {config.columns.map((column, index) => (
               <TableHeaderColumn key={index}>{column.title}</TableHeaderColumn>
             ))}
           </TableRow>
         </TableHeader>
+        */}
         <TableBody
           displayRowCheckbox={false}
           deselectOnClickaway

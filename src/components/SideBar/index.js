@@ -6,6 +6,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { indigoA200 } from 'material-ui/styles/colors';
 import AssessmentIcon from 'material-ui/svg-icons/action/assessment';
 import AssignmentIcon from 'material-ui/svg-icons/action/assignment';
+import HelpIcon from 'material-ui/svg-icons/action/help';
 import WebIcon from 'material-ui/svg-icons/av/web';
 import FolderIcon from 'material-ui/svg-icons/file/folder';
 import TuneIcon from 'material-ui/svg-icons/image/tune';
@@ -16,7 +17,8 @@ import {
   LINK_TO_APPLICANT,
   LINK_TO_MANAGE_TOKENS,
   LINK_TO_TOKEN_HOLDER,
-  LINK_TO_PARAMETERIZER
+  LINK_TO_PARAMETERIZER,
+  LINK_TO_HELP
 } from '../../constants/Navigation';
 
 const iconStyles = {
@@ -41,9 +43,9 @@ const renderNavItem = (key, to, icon, registry) => (
 const SideBar = (props) => {
   const navItems = [
     {
-      key: keys.menu_tokenHolder,
-      icon: <AssessmentIcon style={iconStyles} />,
-      to: LINK_TO_TOKEN_HOLDER
+      key: keys.menu_consumer,
+      icon: <WebIcon style={iconStyles} />,
+      to: LINK_TO_CONSUMER
     },
     {
       key: keys.menu_candidate,
@@ -51,9 +53,9 @@ const SideBar = (props) => {
       to: LINK_TO_APPLICANT
     },
     {
-      key: keys.menu_consumer,
-      icon: <WebIcon style={iconStyles} />,
-      to: LINK_TO_CONSUMER
+      key: keys.menu_tokenHolder,
+      icon: <AssessmentIcon style={iconStyles} />,
+      to: LINK_TO_TOKEN_HOLDER
     },
     {
       key: keys.menu_manageTokens,
@@ -71,7 +73,7 @@ const SideBar = (props) => {
       <div>
         <List>
           { navItems.map(x => renderNavItem(x.key, x.to, x.icon, props.registry)) }
-          <ListItem
+          {/* <ListItem
             primaryText={keys.documentationText}
             initiallyOpen={false}
             primaryTogglesNestedList
@@ -84,6 +86,7 @@ const SideBar = (props) => {
               />
             ]}
           />
+          */}
         </List>
       </div>
     </div>

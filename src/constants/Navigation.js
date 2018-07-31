@@ -9,6 +9,7 @@ export const TOKEN_HOLDER = '/token_holder/:registry';
 export const LINK_TO_TOKEN_HOLDER = '/token_holder/';
 export const PARAMETERIZER = '/parameterizer/:registry';
 export const LINK_TO_PARAMETERIZER = '/parameterizer/';
+export const LINK_TO_HELP = 'https://github.com/poetapp';
 
 export function toPath (link, registryAddress) {
   return link.replace(':registry', registryAddress);

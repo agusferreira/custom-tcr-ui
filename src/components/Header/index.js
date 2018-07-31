@@ -5,12 +5,13 @@ import * as candidateActions from '../../actions/CandidateActions';
 import {connect} from 'react-redux';
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 import CircularProgress from 'material-ui/CircularProgress';
-import { EtherIcon, AdtIcon } from './Icons';
+import { EtherIcon, PoeIcon } from './Icons';
 import keys from '../../i18n';
 import './style.css';
 import IconButton from 'material-ui/IconButton';
 import RegistryIcon from 'material-ui/svg-icons/av/playlist-add';
 import GlobalIcon from 'material-ui/svg-icons/av/new-releases';
+import ListIcon from 'material-ui/svg-icons/action/home';
 import { yellow500 } from 'material-ui/styles/colors';
 import storage from '../../utils/CookieStorage';
 
@@ -30,15 +31,15 @@ const Header = ({ balance, onSwitcherClick, onSettingsClick, onTCRofTCRsClick, i
           : <ToolbarTitle className='HeaderText' text={balance.ethers + ` ${keys.eth}`} />
         }
         <ToolbarSeparator className='Separator' />
-        <AdtIcon style={{color: keys.headerTextColor, marginRight: 7}} />
+        <PoeIcon style={{color: keys.headerTextColor, marginRight: 7}} />
         { balance.isFetchingBalance
           ? <CircularProgress color={keys.headerTextColor} size={25} />
           : <ToolbarTitle className='HeaderText' text={balance.tokens + ` ${keys.tokenName}`} />
         }
         <ToolbarSeparator className='Separator' />
         {!useBackend &&
-        <IconButton tooltip='Switch to TCR of TCRs' onClick={onTCRofTCRsClick}>
-          <GlobalIcon color={isTCRofTCRsActive ? yellow500 : keys.headerTextColor} />
+        <IconButton tooltip='Switch to Master TCR' onClick={onTCRofTCRsClick}>
+          <ListIcon color={isTCRofTCRsActive ? yellow500 : keys.headerTextColor} />
         </IconButton>
         }
         <ToolbarSeparator className='Separator' />

@@ -17,9 +17,13 @@ const createCache = (registry) => {
       // if is TCR of TCRs - get name from contract
       if (registry.address === TCRofTCRs.registry) {
         const nameFromContract = await RegistriesProvider.getRegistryName(item.name);
+        // COMEBACK registry listing page title for each TCR
         item.label = `${nameFromContract} (${item.name})`;
+        item.listingurl = item.name
+        item.target = '_self'
       } else {
         item.label = item.name;
+        item.target = '_blank'
       }
 
       return item;

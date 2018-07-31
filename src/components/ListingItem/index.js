@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BN from 'bn.js';
 import Card from 'material-ui/Card';
@@ -99,8 +100,13 @@ class ListingItem extends Component {
         {this.props.showTxQueue ? this.renderTxQueue(this.props.txQueue) : ('')}
         <div className='listingContent'>
           {
-            listing.description
-              ? <p>{listing.description}</p>
+            listing.listingurl
+            // COMEBACK to listing description area
+              ? <Link to={`${listing.listingurl}`} target="_blank" style={{
+                color: keys.accentColor,
+                fontWeight: '400',
+                textDecoration: 'underline',
+              }}>{listing.listingurl}</Link>
               : <div>
                 <Icon color={keys.accentColor} />
                 <p>{keys.contentNotAvailable}</p>

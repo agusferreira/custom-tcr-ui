@@ -10,7 +10,7 @@ const RefreshRejected2 = () =>
         <tspan x='132.521' y='13.135'>Voting commit</tspan>
       </text>
       <text fill='#7F8FA4' fontFamily='OpenSans, Open Sans' fontSize={12} opacity='.3'>
-        <tspan x='251.346' y='13.135'>Voting revial</tspan>
+        <tspan x='251.346' y='13.135'>Voting reveal</tspan>
       </text>
       <text fill='#7F8FA4' fontFamily='OpenSans, Open Sans' fontSize={12} opacity='.3'>
         <tspan x='366.171' y='13.135'>In registry</tspan>
