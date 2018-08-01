@@ -54,7 +54,11 @@ const renderRow = (config, data, registry, index) => (
         return (
           <TableRowColumn key={key}>{data[column.propName]}</TableRowColumn>
         );
-      } else if (data.listingurl) {
+      } else if (column.propName === 'deposit') {
+        return (
+          <TableRowColumn key={key}>{data.deposit} {keys.tokenName}</TableRowColumn>
+        );
+      }else if (data.listingurl) {
         return (
           <TableRowColumn key={key} colSpan='5'>
             <Link
@@ -96,7 +100,7 @@ const ListingsList = ({ listings, config, registry }) => {
           showRowHover
           stripedRows={false}
         >
-          {listings.map((row, index) => renderRow(config, row, registry, index))}
+          {listings.sort((a, b) => a.deposit < b.deposit).map((row, index) => renderRow(config, row, registry, index))}
         </TableBody>
       </Table>
     </div>
