@@ -15,7 +15,8 @@ import {
   WITHDRAW_VOTING_RIGHTS,
   LISTING_EXIT,
   DEPOSIT_LISTING,
-  WITHDRAW_LISTING
+  WITHDRAW_LISTING,
+  SUBMIT_AVATAR
 } from '../constants/actions';
 
 // TODO: move to TokenHolderActions
@@ -92,6 +93,13 @@ export function applyListing (name, tokens, file, listingurl) {
     file,
     listingurl
   };
+}
+
+export function uploadAvatarIPFS (hash) {
+    return {
+        type: SUBMIT_AVATAR,
+        hash: hash
+    };
 }
 
 export function hideTxQueue () {

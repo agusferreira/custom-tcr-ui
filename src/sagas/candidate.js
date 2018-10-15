@@ -23,7 +23,8 @@ import {
   APPROVE_PARAMETERIZER_TOKENS,
   REQUEST_VOTING_RIGHTS,
   WITHDRAW_VOTING_RIGHTS,
-  REQUEST_CURRENT_LISTING
+  REQUEST_CURRENT_LISTING,
+  SUBMIT_AVATAR
 } from '../constants/actions';
 
 // TODO: refactor this shit
@@ -87,6 +88,16 @@ export function * applyListing (action) {
   let queue = yield call(getApplyListingQueue, hash, data, action.tokens);
 
   yield put({ type: SHOW_TX_QUEUE, queue });
+}
+
+
+export function * uploadAvatarIPFS (buffer) {
+    let data;
+    if (buffer) {
+        data = yield apply(IPFS, 'upload', buffer);
+    }
+    console.log('data --> ', data);
+    yield put({type: SUBMIT_AVATAR, hash: JSON.stringify(data)});
 }
 
 export function * cancelListingApplication (action) {
@@ -199,4 +210,5 @@ export default function * flow () {
   yield takeEvery(APPROVE_PARAMETERIZER_TOKENS, approveParameterizerTokens);
   yield takeEvery(REQUEST_VOTING_RIGHTS, requestVotingRights);
   yield takeEvery(WITHDRAW_VOTING_RIGHTS, withdrawVotingRights);
+  yield takeEvery(SUBMIT_AVATAR, uploadAvatarIPFS);
 }

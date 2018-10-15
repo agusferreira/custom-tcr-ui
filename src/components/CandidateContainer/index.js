@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import {put, takeEvery, apply, call, select} from 'redux-saga/effects';
 import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import Card from 'material-ui/Card';
+
+import {Card, Grid, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 import LinearProgress from 'material-ui/LinearProgress';
 import CopyIcon from 'material-ui/svg-icons/content/content-copy';
 import DropZone from 'react-dropzone';
@@ -18,6 +21,8 @@ import * as appActions from '../../actions/AppActions';
 import { connect } from 'react-redux';
 import BaseUnitsTooltip from '../BaseUnitsTooltip';
 import FileUtil from '../../utils/FileUtil';
+import IPFS from '../../services/IPFS';
+
 const tcrOfTcrs = require('../../cfg.json').TCRofTCRs;
 
 class CandidateContainer extends Component {
@@ -31,7 +36,11 @@ class CandidateContainer extends Component {
       file: null,
       listingurl: '',
       stake: 0,
-      stakeError: ''
+      stakeError: '',
+      ipfsHash: '',
+      web3: null,
+      buffer: null,
+      account: null
     };
 
     this.listConfig = {
@@ -42,9 +51,29 @@ class CandidateContainer extends Component {
         {propName: 'action', title: keys.candidatePage_listingActions, tooltip: keys.candidatePage_listingActionsTooltip}
       ]
     };
+
+    this.captureFile = this.captureFile.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentWillMount () {
+    captureFile(event) {
+        event.preventDefault()
+        const file = event.target.files[0]
+        const reader = new window.FileReader()
+        reader.readAsArrayBuffer(file)
+        reader.onloadend = () => {
+            this.setState({ buffer: Buffer(reader.result) })
+        }
+    }
+
+    onSubmit(event) {
+        event.preventDefault()
+        let hash = this.props.actions.uploadAvatarIPFS(this.state.buffer)
+        this.setState({ipfsHash: hash});
+    }
+
+
+    componentWillMount () {
     const registry = UrlUtils.getRegistryAddressByLink();
     if (registry && registry !== this.props.registry) {
       this.props.appActions.changeRegistry(registry);
